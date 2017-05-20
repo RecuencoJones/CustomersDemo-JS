@@ -1,4 +1,4 @@
-# Customers Demo
+# Customers Demo JS
 
 [![Build Status](https://travis-ci.com/RecuencoJones/CustomersDemo-JS.svg?token=aEFEyxH22R2zBRmM2Yab&branch=develop)](https://travis-ci.com/RecuencoJones/CustomersDemo-JS)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
@@ -6,6 +6,8 @@
 [![coverage](https://sonarqube.com/api/badges/measure?key=RecuencoJones.CustomersDemo-JS%3Adevelop&metric=coverage)](https://sonarqube.com/dashboard?id=RecuencoJones.CustomersDemo-JS%3Adevelop)
 [![sqale_debt_ratio](https://sonarqube.com/api/badges/measure?key=RecuencoJones.CustomersDemo-JS%3Adevelop&metric=sqale_debt_ratio)](https://sonarqube.com/dashboard?id=RecuencoJones.CustomersDemo-JS%3Adevelop)
 
+Port to plain ES5 JavaScript from [CustomersDemo](https://github.com/RecuencoJones/CustomersDemo)
+ 
 ## Requirements
 
 - node \>= 6
