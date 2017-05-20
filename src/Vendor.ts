@@ -1,6 +1,0 @@
-import 'expose-loader?Tether!tether'
-import 'expose-loader?jQuery!jquery'
-import 'lodash'
-import 'angular'
-import 'angular-ui-router'
-import 'bootstrap'

@@ -1,6 +1,7 @@
 # Customers Demo
 
 [![Build Status](https://travis-ci.com/RecuencoJones/CustomersDemo.svg?token=aEFEyxH22R2zBRmM2Yab&branch=develop)](https://travis-ci.com/RecuencoJones/CustomersDemo)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 ## Requirements
 
@@ -68,30 +69,16 @@ Utility library with many useful methods to work with collections, templates, st
 
 ## Tooling
 
-### TypeScript
+### ESLint
 
-A superset of JavaScript with Types created by Microsoft, this language has been widely embraced by the community
-as it has proved its worth. So much even Angular 2 is fully written in TypeScript.
-
-In this simple demo we have a single model _Customer_ that can have _Orders_.
-
-With TypeScript we can easily create our domain data structures and use them according to their contracts
-without fears of changing them in the future, as types allow us to refactor and have type checks.
-
-Not only with the models, but also we will get completion and typesafe checks for external libraries like 
-angular, lodash, karma...
-
-### TSLint
-
-Similar yet less powerful than ESLint, it is the recommended linting tool for TypeScript projects.
+The most popular linting tool for JavaScript projects.
 
 For this particular project it has been configured to use `standard` styleguide through the module 
-`tslint-config-standard` with some overrides.
+`eslint-config-standard` with some overrides.
 
-### TypeDoc
+### JSDoc
 
-Documentation generator from TypeScript sources. This tool is similar to JSDoc, but we get all the benefits from
-TypeScript type definitions, resulting in a better linked documentation web.
+Documentation generator from JavaScript sources.
 
 ### Webpack
 
@@ -153,15 +140,6 @@ JSON data.
 One of the very first things that I learned and adopted when using angular was to discard the `ng-app` directive. It is
 preferable to control the startup of applications by ourselves, and `angular.bootstrap()` provides this.
 
-### Decorators
-
-Even though the application would work perfectly by using traditional angular syntax, I think this is a good way of 
-showcasing the power of TypeScript or future ES7. Decorators here are just sugar syntax, but help spotting injectables,
-component configurations, etc. at a glance plus keeping related data together.
-
-As a personal note, I find it interesting how just mixing Angular 1.6 + TypeScript + Decorators makes the codebase look
-rather modern, almost like Angular 2.
-
 ### Directives vs Components
 
 In this application three `angular.components` have been used an no directives. The main difference between them relays 
@@ -194,8 +172,7 @@ So as to run build, linter, doc and tests, TravisCI was chosen since I have alre
 The integration was really simple, just adding [.travis.yml](./.travis.yml) file with very few configurations and we
 get builds per push and pull request checks.
 
-Unfortunately, the public sonarqube instance does not have the required [TypeScript plugin](https://github.com/Pablissimo/SonarTsPlugin), 
-but any instance with it could analyze the source code using [the sonar configuration](./sonar-project.properties).
+Also, sonarqube metrics can be found in the public sonarqube instance, check the [configuration of this project](./sonar-project.properties).
 
 ## Dockerizing
 

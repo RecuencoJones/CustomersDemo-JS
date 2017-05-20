@@ -1,16 +1,15 @@
-const path = require('path')
 const webpackConfig = require('../../webpack.config')
 
 module.exports = (config) => {
   config.set({
     basePath: '../../',
     files: [
-      'test/config/MochaGlobals.ts',
-      'test/specs/unit/**/*.spec.ts'
+      'test/config/MochaGlobals.js',
+      'test/specs/unit/**/*.spec.js'
     ],
     preprocessors: {
-      'test/config/MochaGlobals.ts': ['webpack'],
-      'test/specs/unit/**/*.spec.ts': ['webpack']
+      'test/config/MochaGlobals.js': ['webpack'],
+      'test/specs/unit/**/*.spec.js': ['webpack']
     },
     exclude: [],
     frameworks: [
@@ -25,10 +24,7 @@ module.exports = (config) => {
     ],
     webpack: webpackConfig,
     webpackMiddleware: {
-      noInfo: true,
-    },
-    mime: {
-      'text/x-typescript': ['ts', 'tsx']
+      noInfo: true
     },
     reporters: ['dots', 'coverage-istanbul'],
     coverageIstanbulReporter: {

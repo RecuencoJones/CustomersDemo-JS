@@ -1,40 +1,38 @@
-import * as angular from 'angular'
-import { CustomersView } from '../../../../src/Views/Customers'
-import { ICustomer } from '../../../../src/Models/ICustomer'
+var angular = require('angular')
 
-describe('View: Customers', () => {
-  let $rootScope: ng.IRootScopeService
-  let $controller: ng.IControllerService
-  let $q: ng.IQService
-  let $state: ng.ui.IStateService
-  let sandbox: sinon.SinonSandbox
-  let customersMock: Array<ICustomer>
-  let customerMock: ICustomer
-  let API
-  let form
+describe('View: Customers', function() {
+  var $rootScope
+  var $controller
+  var $q
+  var $state
+  var sandbox
+  var customersMock
+  var customerMock
+  var API
+  var form
 
-  function getController(): CustomersView {
-    return $controller($state.get('customers').controller as Function) as CustomersView
+  function getController() {
+    return $controller($state.get('customers').controller)
   }
 
   beforeEach(angular.mock.module('customers-demo'))
 
-  beforeEach(() => {
+  beforeEach(function() {
     sandbox = sinon.sandbox.create()
 
     customersMock = []
-    customerMock = {} as ICustomer
+    customerMock = {}
 
     API = {
-      getCustomers() {
+      getCustomers: function() {
         return $q.resolve(customersMock)
       },
 
-      addCustomer(customer: ICustomer) {
+      addCustomer: function(customer) {
         return $q.resolve()
       },
 
-      removeCustomerWithId(id: number) {
+      removeCustomerWithId: function(id) {
         return $q.resolve()
       }
     }
@@ -46,46 +44,47 @@ describe('View: Customers', () => {
       $error: {}
     }
 
-    angular.mock.module(($provide) => {
-      $provide.service('API', () => API)
+    angular.mock.module(function($provide) {
+      $provide.service('API', function() {
+        return API
+      })
     })
   })
 
-  beforeEach(inject((_$rootScope_, _$controller_, _$state_, _$q_) => {
+  beforeEach(inject(function(_$rootScope_, _$controller_, _$state_, _$q_) {
     $rootScope = _$rootScope_
     $controller = _$controller_
     $q = _$q_
     $state = _$state_
   }))
 
-  afterEach(() => {
+  afterEach(function() {
     sandbox.restore()
   })
 
-  describe('Init', () => {
-    it('should populate with customers data', () => {
-      const $ctrl: CustomersView = getController()
-
+  describe('Init', function() {
+    it('should populate with customers data', function() {
       customersMock = [customerMock, customerMock]
 
-      $ctrl.$onInit()
+      var $ctrl = getController()
+
       $rootScope.$apply()
 
       expect($ctrl.customers).to.deep.equal(customersMock)
     })
   })
 
-  describe('Submit customer', () => {
-    it('should trigger submit of new customer with valid form', () => {
-      const $ctrl: CustomersView = getController()
-      const addCustomerSpy: sinon.SinonSpy = sandbox.spy(API, 'addCustomer')
+  describe('Submit customer', function() {
+    it('should trigger submit of new customer with valid form', function() {
+      var $ctrl = getController()
+      var addCustomerSpy = sandbox.spy(API, 'addCustomer')
 
       customerMock = {
         firstName: 'Some Name',
         lastName: 'Some Surname',
         address: 'Some Address',
         city: 'Some City'
-      } as ICustomer
+      }
 
       form.$valid = true
       $ctrl.newCustomer = customerMock
@@ -100,9 +99,9 @@ describe('View: Customers', () => {
       expect(form.$setUntouched).to.have.been.called
     })
 
-    it('should prevent submit of new customer with invalid form', () => {
-      const $ctrl: CustomersView = getController()
-      const errorSetTouchedSpy: sinon.SinonSpy = sandbox.spy()
+    it('should prevent submit of new customer with invalid form', function() {
+      var $ctrl = getController()
+      var errorSetTouchedSpy = sandbox.spy()
 
       sandbox.spy(API, 'addCustomer')
 
@@ -111,7 +110,7 @@ describe('View: Customers', () => {
         lastName: 'Some Surname',
         address: 'Some Address',
         city: 'Some City'
-      } as ICustomer
+      }
 
       form.$valid = false
       form.$error.required = [
@@ -131,9 +130,9 @@ describe('View: Customers', () => {
     })
   })
 
-  describe('Remove customer', () => {
-    it('should trigger removal of customer', () => {
-      const $ctrl: CustomersView = getController()
+  describe('Remove customer', function() {
+    it('should trigger removal of customer', function() {
+      var $ctrl = getController()
 
       sandbox.spy(API, 'removeCustomerWithId')
 
@@ -144,9 +143,9 @@ describe('View: Customers', () => {
     })
   })
 
-  describe('Navigate to customer details', () => {
-    it('should trigger navigation to customer details', () => {
-      const $ctrl: CustomersView = getController()
+  describe('Navigate to customer details', function() {
+    it('should trigger navigation to customer details', function() {
+      var $ctrl = getController()
 
       sandbox.stub($state, 'go')
 

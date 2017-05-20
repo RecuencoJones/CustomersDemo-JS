@@ -1,0 +1,6 @@
+require('expose-loader?Tether!tether')
+require('expose-loader?jQuery!jquery')
+require('lodash')
+require('angular')
+require('angular-ui-router')
+require('bootstrap')

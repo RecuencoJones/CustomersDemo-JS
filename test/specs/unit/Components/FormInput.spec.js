@@ -1,23 +1,22 @@
-import * as angular from 'angular'
-import { FormInput } from '../../../../src/Components/FormInput'
+var angular = require('angular')
 
-describe('Component: FormInput', () => {
-  let $componentController: ng.IControllerService
+describe('Component: FormInput', function() {
+  var $componentController
 
   beforeEach(angular.mock.module('customers-demo'))
 
-  beforeEach(inject((_$componentController_) => {
+  beforeEach(inject(function(_$componentController_) {
     $componentController = _$componentController_
   }))
 
-  it('should render the component', () => {
-    const $ctrl: FormInput = $componentController('formInput', null, {
+  it('should render the component', function() {
+    var $ctrl = $componentController('formInput', null, {
       name: 'someInput',
       placeholder: 'Some Input',
       label: 'Some Input Label',
       model: 'value',
-      form: {} as ng.IFormController
-    }) as FormInput
+      form: {}
+    })
 
     expect($ctrl.name).to.equal('someInput')
     expect($ctrl.placeholder).to.equal('Some Input')

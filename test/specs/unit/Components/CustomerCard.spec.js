@@ -1,7 +1,7 @@
-import * as angular from 'angular'
+var angular = require('angular')
 
-describe('Component: CustomerCard', () => {
-  const customerMock = {
+describe('Component: CustomerCard', function() {
+  var customerMock = {
     firstName: 'Foo',
     lastName: 'Bar',
     orders: [
@@ -13,19 +13,19 @@ describe('Component: CustomerCard', () => {
     ]
   }
 
-  let $componentController
+  var $componentController
 
   beforeEach(angular.mock.module('customers-demo'))
 
-  beforeEach(inject((_$componentController_) => {
+  beforeEach(inject(function(_$componentController_) {
     $componentController = _$componentController_
   }))
 
-  it('should render props', () => {
-    const $ctrl = $componentController('customerCard', null, {
+  it('should render props', function() {
+    var $ctrl = $componentController('customerCard', null, {
       customer: customerMock,
-      onClick: () => {},
-      onRemove: () => {}
+      onClick: function() {},
+      onRemove: function() {}
     })
 
     expect($ctrl.customer).to.equal(customerMock)

@@ -1,7 +1,7 @@
-import { CustomersView } from '../Views/Customers'
-import { CustomerOrdersView } from '../Views/CustomerOrders'
+var CustomersView = require('../Views/Customers')
+var CustomerOrdersView = require('../Views/CustomerOrders')
 
-export function routerConfig($stateProvider, $urlRouterProvider) {
+function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('customers', CustomersView)
   .state('customer-orders', CustomerOrdersView)
@@ -10,3 +10,5 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
 }
 
 routerConfig.$inject = ['$stateProvider', '$urlRouterProvider']
+
+module.exports = routerConfig

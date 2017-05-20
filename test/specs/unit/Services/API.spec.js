@@ -1,30 +1,24 @@
-import * as angular from 'angular'
-import { ICustomer } from '../../../../src/Models/ICustomer'
-import {
-  API, GetCustomersResponse, CreateCustomerResponse, GetCustomerResponse,
-  DeleteCustomerResponse
-} from '../../../../src/Services/API'
+var angular = require('angular')
 
-describe('Service: API', () => {
-  let $httpBackend: ng.IHttpBackendService
-  let api: API
+describe('Service: API', function() {
+  var $httpBackend
+  var api
 
   beforeEach(angular.mock.module('customers-demo'))
 
-  beforeEach(inject((_$httpBackend_, _API_) => {
+  beforeEach(inject(function(_$httpBackend_, _API_) {
     $httpBackend = _$httpBackend_
     api = _API_
   }))
 
-  describe('getCustomers()', () => {
-    it('should retrieve all customers successfully', () => {
-      const customerMocks = [{}, {}] as Array<ICustomer>
-
-      let response: Array<ICustomer>
+  describe('getCustomers()', function() {
+    it('should retrieve all customers successfully', function() {
+      var customerMocks = [{}, {}]
+      var response
 
       api.getCustomers()
-      .then(({data}: GetCustomersResponse) => {
-        response = data
+      .then(function(rawResponse) {
+        response = rawResponse.data
       })
 
       $httpBackend.whenGET(/\/customers$/).respond(200, {
@@ -36,11 +30,11 @@ describe('Service: API', () => {
       expect(response).to.have.length(2)
     })
 
-    it('should return error on request fail', () => {
-      let response: string
+    it('should return error on request fail', function() {
+      var response
 
       api.getCustomers()
-      .catch((error) => {
+      .catch(function(error) {
         response = error
       })
 
@@ -52,15 +46,14 @@ describe('Service: API', () => {
     })
   })
 
-  describe('addCustomer()', () => {
-    it('should save a new customer successfully', () => {
-      const customerMock = {} as ICustomer
-
-      let response: number
+  describe('addCustomer()', function() {
+    it('should save a new customer successfully', function() {
+      var customerMock = {}
+      var response
 
       api.addCustomer(customerMock)
-      .then(({data}: CreateCustomerResponse) => {
-        response = data
+      .then(function(rawResponse) {
+        response = rawResponse.data
       })
 
       $httpBackend.whenPOST(/\/customers$/).respond(201, {
@@ -72,13 +65,12 @@ describe('Service: API', () => {
       expect(response).to.equal(1)
     })
 
-    it('should return error on request fail', () => {
-      const customerMock = {} as ICustomer
-
-      let response: string
+    it('should return error on request fail', function() {
+      var customerMock = {}
+      var response
 
       api.addCustomer(customerMock)
-      .catch((error) => {
+      .catch(function(error) {
         response = error
       })
 
@@ -90,15 +82,14 @@ describe('Service: API', () => {
     })
   })
 
-  describe('getCustomerWithId()', () => {
-    it('should retrieve all customers successfully', () => {
-      const customerMock = {} as ICustomer
-
-      let response: ICustomer
+  describe('getCustomerWithId()', function() {
+    it('should retrieve all customers successfully', function() {
+      var customerMock = {}
+      var response
 
       api.getCustomerWithId(1)
-      .then(({data}: GetCustomerResponse) => {
-        response = data
+      .then(function(rawResponse) {
+        response = rawResponse.data
       })
 
       $httpBackend.whenGET(/\/customers\/[0-9]+$/).respond(200, {
@@ -110,11 +101,11 @@ describe('Service: API', () => {
       expect(response).to.deep.equal(customerMock)
     })
 
-    it('should return error on request fail', () => {
-      let response: string
+    it('should return error on request fail', function() {
+      var response
 
       api.getCustomerWithId(1)
-      .catch((error) => {
+      .catch(function(error) {
         response = error
       })
 
@@ -126,13 +117,13 @@ describe('Service: API', () => {
     })
   })
 
-  describe('removeCustomerWithId()', () => {
-    it('should retrieve all customers successfully', () => {
-      let response: Object
+  describe('removeCustomerWithId()', function() {
+    it('should retrieve all customers successfully', function() {
+      var response
 
       api.removeCustomerWithId(1)
-      .then(({data}: DeleteCustomerResponse) => {
-        response = data
+      .then(function(rawResponse) {
+        response = rawResponse.data
       })
 
       $httpBackend.whenDELETE(/\/customers\/[0-9]+$/).respond(200, {
@@ -144,11 +135,11 @@ describe('Service: API', () => {
       expect(response).to.be.empty
     })
 
-    it('should return error on request fail', () => {
-      let response: string
+    it('should return error on request fail', function() {
+      var response
 
       api.removeCustomerWithId(1)
-      .catch((error) => {
+      .catch(function(error) {
         response = error
       })
 

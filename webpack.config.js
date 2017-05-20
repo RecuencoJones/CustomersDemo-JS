@@ -3,8 +3,8 @@ const path = require('path'),
 
 const config = {
   entry: {
-    app: './src/App.ts',
-    vendor: './src/Vendor.ts'
+    app: './src/App.js',
+    vendor: './src/Vendor.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -15,9 +15,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader'
-      }, {
         test: /\.html$/,
         use: 'html-loader'
       }, {
@@ -41,7 +38,7 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js']
   },
   devServer: {
     publicPath: '/dist/',
@@ -71,9 +68,9 @@ if (process.env.NODE_ENV === 'production') {
 } else if (process.env.NODE_ENV === 'testing') {
   config.module.rules.push({
     enforce: 'post',
-    test: /\.ts$/,
+    test: /\.js$/,
     loader: 'istanbul-instrumenter-loader',
-    exclude: /test|node_modules|\.spec\.ts$/
+    exclude: /test|node_modules|\.spec\.js$/
   })
 
   // disable CommonsChunkPlugin for testing
